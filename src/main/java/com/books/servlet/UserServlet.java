@@ -1,6 +1,7 @@
 package com.books.servlet;
 
 import com.books.dto.UserDto;
+import com.books.service.UserService;
 import com.books.service.impl.UserServiceImpl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,17 +13,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
-
-// /books_war/users
 @WebServlet("/users")
 public class UserServlet extends HttpServlet {
 
     private static final Gson gson = new GsonBuilder().create();
-    private final UserServiceImpl userService;
-
-    public UserServlet(UserServiceImpl userService) {
-        this.userService = userService;
-    }
+    private final UserService userService = new UserServiceImpl(); // здесь исправил
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

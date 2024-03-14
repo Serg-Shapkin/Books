@@ -11,11 +11,7 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    private final UserRepositoryImpl userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = new UserRepositoryImpl();
-    }
+    private final UserRepository userRepository = new UserRepositoryImpl(); // здесь исправил
 
     @Override
     public User create(UserDto userDto) {
