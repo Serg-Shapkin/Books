@@ -9,16 +9,25 @@ public class BookMapper {
                 .id(book.getId())
                 .author(book.getAuthor())
                 .description(book.getDescription())
-                .information(book.getInformation())
+                .user_id(book.getUser_id())
                 .build();
     }
 
-    public static Book toBookDto(BookDto bookDto) {
+    public static Book toBookShort(BookDto bookDto) {
         return Book.builder()
                 .id(bookDto.getId())
                 .author(bookDto.getAuthor())
                 .description(bookDto.getDescription())
-                .information(bookDto.getInformation())
+                .user_id(bookDto.getUser_id())
+                .build();
+    }
+
+    public static Book toBook(BookDto bookDto) {
+        return Book.builder()
+                .id(bookDto.getId())
+                .author(bookDto.getAuthor())
+                .description(bookDto.getDescription())
+                .user_id(bookDto.getUser_id())
                 .build();
     }
 }

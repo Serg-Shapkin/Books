@@ -11,15 +11,15 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository = new UserRepositoryImpl(); // здесь исправил
+    private final UserRepository userRepository = new UserRepositoryImpl();
 
     @Override
     public User create(UserDto userDto) {
-        return userRepository.create(UserMapper.toUser(userDto));
+        return userRepository.create(UserMapper.toUserShort(userDto)); // DTO без id
     }
 
     @Override
-    public User getById(Integer id) {
+    public User getById(long id) {
         return userRepository.getById(id);
     }
 
@@ -30,11 +30,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(UserDto userDto) {
-        return userRepository.update(UserMapper.toUser(userDto));
+        return userRepository.update(UserMapper.toUser(userDto)); // DTO с id
     }
 
     @Override
-    public User delete(UserDto userDto) {
-        return userRepository.delete(UserMapper.toUser(userDto));
+    public void delete(long id ) {
+        userRepository.delete(id);
     }
 }

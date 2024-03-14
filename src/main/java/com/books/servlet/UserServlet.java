@@ -1,6 +1,7 @@
 package com.books.servlet;
 
 import com.books.dto.UserDto;
+import com.books.entity.User;
 import com.books.service.UserService;
 import com.books.service.impl.UserServiceImpl;
 import com.google.gson.Gson;
@@ -11,9 +12,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/users")
+@WebServlet("/user/*")
 public class UserServlet extends HttpServlet {
 
     private static final Gson gson = new GsonBuilder().create();
@@ -21,19 +23,38 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-
         String json = request.getReader().lines().collect(Collectors.joining());
         UserDto userDto = gson.fromJson(json, UserDto.class); // из json в userDto
-        userService.create(userDto); // отдали в сервис
-
-        response.setContentType("application/json");
-        response.getWriter().write(json); // отдали json
+        userService.create(userDto);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write("Method doGet");
+        String requestPath = request.getRequestURI();
+        String[] partPath = requestPath.split("/");
+
+        if (partPath.length == 2 && partPath[1].equals("user")) {
+            long id = Long.parseLong(request.getParameter("id"));
+            response.getWriter().write(gson.toJson(userService.getById(id), User.class));
+
+        } else if (partPath.length == 3 && partPath[1].equals("user") && partPath[2].equals("all")) {
+            List<User> users = userService.getAll();
+            for(User user : users) {
+                response.getWriter().write(gson.toJson(user, User.class) + "\n");
+            }
+        }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String json = request.getReader().lines().collect(Collectors.joining());
+        UserDto userDto = gson.fromJson(json, UserDto.class);
+        userService.update(userDto);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        long id = Long.parseLong(request.getParameter("id"));
+        userService.delete(id);
     }
 }

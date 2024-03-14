@@ -2,6 +2,7 @@ package com.books.entity;
 
 import lombok.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Builder
@@ -11,16 +12,9 @@ import java.util.Objects;
 @NoArgsConstructor
 public class User {
 
-    private long id; // автоинкремент в таблице
+    private long id;
     private String name;
     private int age;
-    //private List<Book> books;
-
-
-    public User(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
 
     @Override
     public String toString() {
@@ -28,7 +22,6 @@ public class User {
                 "\n - id" + id +
                 "\n - name: " + name +
                 "\n - age: " + age;
-                //"\n - books: " + books;
     }
 
     @Override

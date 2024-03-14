@@ -15,12 +15,6 @@ public final class ConnectionService {
         try {
             Class.forName(DRIVER);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-            if (connection != null) {
-                System.out.println("Connection OK");
-            } else {
-                System.out.println("Connection Failed");
-            }
         } catch (Exception e) {
             System.out.println(e);
         }
