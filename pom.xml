@@ -78,17 +78,6 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
             </plugin>
-
-            <!--&lt;!&ndash; подключили плагин, чтобы собрать проект без файла web.xml&ndash;&gt;
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>-->
-
         </plugins>
     </build>
 </project>
