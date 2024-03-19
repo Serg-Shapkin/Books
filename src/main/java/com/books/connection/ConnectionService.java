@@ -9,12 +9,12 @@ public final class ConnectionService {
     private static final String USERNAME = "shapkinsa";
     private static final String PASSWORD = "2244";
 
-
     public static Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName(DRIVER);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
         } catch (Exception e) {
             System.out.println(e);
         }

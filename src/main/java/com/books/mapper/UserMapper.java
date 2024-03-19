@@ -10,8 +10,10 @@ public class UserMapper {
                 .id(user.getId())
                 .name(user.getName())
                 .age(user.getAge())
+                .books(user.getBooks())
                 .build();
     }
+
     public static User toUserShort(UserDto userDto) {
         return User.builder()
                 .name(userDto.getName())
@@ -24,6 +26,7 @@ public class UserMapper {
                 .id(userDto.getId())
                 .name(userDto.getName())
                 .age(userDto.getAge())
+                .books(userDto.getBooks())
                 .build();
     }
 }

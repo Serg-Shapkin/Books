@@ -15,13 +15,16 @@ public class User {
     private long id;
     private String name;
     private int age;
+    private List<Book> books;
+
 
     @Override
     public String toString() {
         return "User: " +
                 "\n - id" + id +
                 "\n - name: " + name +
-                "\n - age: " + age;
+                "\n - age: " + age +
+                "\n - books: " + books;
     }
 
     @Override

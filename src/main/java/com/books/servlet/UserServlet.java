@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 public class UserServlet extends HttpServlet {
 
     private static final Gson gson = new GsonBuilder().create();
-    private final UserService userService = new UserServiceImpl(); // здесь исправил
+    private final UserService userService = new UserServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String json = request.getReader().lines().collect(Collectors.joining());
-        UserDto userDto = gson.fromJson(json, UserDto.class); // из json в userDto
+        UserDto userDto = gson.fromJson(json, UserDto.class); // из json в toUserShort
         userService.create(userDto);
     }
 
@@ -39,7 +39,7 @@ public class UserServlet extends HttpServlet {
 
         } else if (partPath.length == 3 && partPath[1].equals("user") && partPath[2].equals("all")) {
             List<User> users = userService.getAll();
-            for(User user : users) {
+            for (User user : users) {
                 response.getWriter().write(gson.toJson(user, User.class) + "\n");
             }
         }

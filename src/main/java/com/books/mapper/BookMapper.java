@@ -8,16 +8,15 @@ public class BookMapper {
         return BookDto.builder()
                 .id(book.getId())
                 .author(book.getAuthor())
-                .description(book.getDescription())
+                .title(book.getTitle())
                 .user_id(book.getUser_id())
                 .build();
     }
 
     public static Book toBookShort(BookDto bookDto) {
         return Book.builder()
-                .id(bookDto.getId())
                 .author(bookDto.getAuthor())
-                .description(bookDto.getDescription())
+                .title(bookDto.getTitle())
                 .user_id(bookDto.getUser_id())
                 .build();
     }
@@ -26,7 +25,7 @@ public class BookMapper {
         return Book.builder()
                 .id(bookDto.getId())
                 .author(bookDto.getAuthor())
-                .description(bookDto.getDescription())
+                .title(bookDto.getTitle())
                 .user_id(bookDto.getUser_id())
                 .build();
     }

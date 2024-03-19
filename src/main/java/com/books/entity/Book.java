@@ -2,7 +2,6 @@ package com.books.entity;
 
 import lombok.*;
 
-import java.util.List;
 import java.util.Objects;
 
 @Builder
@@ -13,7 +12,7 @@ import java.util.Objects;
 public class Book {
     private long id;
     private String author;
-    private String description;
+    private String title;
     private long user_id;            // кому принадлежит книга
 
 
@@ -22,7 +21,8 @@ public class Book {
         return "Book: " +
                 "\n - id" + id +
                 "\n - author: " + author +
-                "\n - description: " + description;
+                "\n - title: " + title +
+                "\n - user_id: " + user_id;
     }
 
     @Override
